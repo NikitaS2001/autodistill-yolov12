@@ -1,14 +1,17 @@
 import numpy as np
 import supervision as sv
-from autodistill.detection import (CaptionOntology, DetectionBaseModel,
-                                   DetectionTargetModel)
+from autodistill.detection import (
+    CaptionOntology,
+    DetectionBaseModel,
+    DetectionTargetModel,
+)
 from ultralytics import YOLO
 
 
-class YOLOv11Base(DetectionBaseModel):
+class YOLOv12Base(DetectionBaseModel):
     ontology: CaptionOntology
 
-    def __init__(self, ontology: CaptionOntology, weights_path: str = "yolo11n.pt"):
+    def __init__(self, ontology: CaptionOntology, weights_path: str = "yolov12n.pt"):
         self.ontology = ontology
         self.model = YOLO(weights_path)
 
@@ -32,7 +35,7 @@ class YOLOv11Base(DetectionBaseModel):
         return inference_results
 
 
-class YOLOv11(DetectionTargetModel):
+class YOLOv12(DetectionTargetModel):
     def __init__(self, model_name):
         self.yolo = YOLO(model_name)
 
